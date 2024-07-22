@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    .calculator {
+      width: 300px;
+      margin: 20px auto;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+    table {
+      width: 100%;
+    }
+    td {
+      width: 25%;
+      height: 50px;
+      text-align: center;
+      vertical-align: middle;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+    td:hover {
+      background-color: #ddd;
+    }
+    .result {
+      height: 50px;
+      line-height: 50px;
+      font-size: 24px;
+      border: 1px solid #ccc;
+      margin: 10px 0;
+      background-color: #fff;
+      text-align: right;
+      padding-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1><center>calculadora</center></h1>
+  <div class="calculator">
+    <div class="result" id="result">0</div>
+    <table>
+      <tr>
+        <td onclick="addToResult('7')">7</td>
+        <td onclick="addToResult('8')">8</td>
+        <td onclick="addToResult('9')">9</td>
+        <td onclick="addToResult('/')">/</td>
+      </tr>
+      <tr>
+        <td onclick="addToResult('4')">4</td>
+        <td onclick="addToResult('5')">5</td>
+        <td onclick="addToResult('6')">6</td>
+        <td onclick="addToResult('*')">*</td>
+      </tr>
+      <tr>
+        <td onclick="addToResult('1')">1</td>
+        <td onclick="addToResult('2')">2</td>
+        <td onclick="addToResult('3')">3</td>
+        <td onclick="addToResult('-')">-</td>
+      </tr>
+      <tr>
+        <td onclick="addToResult('0')">0</td>
+        <td onclick="addToResult('.')">.</td>
+        <td onclick="clearResult()">C</td>
+        <td onclick="addToResult('+')">+</td>
+      </tr>
+      <tr>
+        <td colspan="4" onclick="calculate()">=</td>
+      </tr>
+    </table>
+  </div>
+
+  <script>
+    function addToResult(value) {
+      var resultElement = document.getElementById('result');
+      if (resultElement.innerHTML === '0' && value !== '.') {
+        resultElement.innerHTML = value;
+      } else {
+        resultElement.innerHTML += value;
+      }
+    }
+
+    function clearResult() {
+      document.getElementById('result').innerHTML = '0';
+    }
+
+    function calculate() {
+      var resultElement = document.getElementById('result');
+      try {
+        var result = eval(resultElement.innerHTML);
+        resultElement.innerHTML = result;
+      } catch (error) {
+        resultElement.innerHTML = 'Error';
+      }
+    }
+  </script>
+</body>
+</html>
